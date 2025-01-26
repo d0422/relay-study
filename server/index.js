@@ -10,6 +10,8 @@ const {
   resolver: articleResolver,
 } = require('./entities/article');
 
+const cors = require('cors');
+
 const gql = String.raw;
 
 const schema = buildSchema(gql`
@@ -36,6 +38,8 @@ const root = {
 };
 
 const app = express();
+
+app.use(cors());
 
 app.use(
   '/',
