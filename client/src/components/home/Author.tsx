@@ -1,0 +1,30 @@
+import { graphql, useFragment } from 'react-relay';
+import { AuthorFragment$key } from './__generated__/AuthorFragment.graphql';
+import { styled } from '@stitches/react';
+
+const AuthorFragment = graphql`
+  fragment AuthorFragment on User {
+    name
+  }
+`;
+
+export default function Author({ author }: { author: AuthorFragment$key }) {
+  const { name } = useFragment(AuthorFragment, author);
+  return (
+    <Flex>
+      <p>작성자</p>
+      <Writer>{name}</Writer>
+    </Flex>
+  );
+}
+
+const Flex = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 10,
+});
+
+const Writer = styled('div', {
+  fontSize: 14,
+  fontWeight: 700,
+});

@@ -1,4 +1,5 @@
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import Articles from '../components/home/Articles';
 
 export default function Home() {
   return (
@@ -7,7 +8,7 @@ export default function Home() {
         title: '커뮤니티',
       }}
     >
-      <div>홈화면</div>
+      <Articles />
     </AppScreen>
   );
 }
