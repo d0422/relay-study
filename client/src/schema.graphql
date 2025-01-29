@@ -1,0 +1,41 @@
+type Query {
+  users: [User]
+  getUser(id: ID!): User
+  articles: [Article]
+  getArticle(id: ID!): Article
+}
+
+type Mutation {
+  createUser(input: UserInput): User
+  createArticle(input: ArticleInput): Article
+  modifyArticle(input: ArticleModifyInput): Article
+}
+
+type Article {
+  id: ID!
+  title: String
+  content: String
+  author: User
+  likeNum: Int
+  isLiked: Boolean
+}
+
+input ArticleInput {
+  title: String
+  content: String
+  userId: String
+}
+
+input ArticleModifyInput {
+  title: String
+  content: String
+}
+
+type User {
+  id: ID!
+  name: String
+}
+
+input UserInput {
+  name: String
+}
