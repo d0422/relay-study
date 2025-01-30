@@ -33,9 +33,9 @@ input ArticleModifyInput {
 
 type User {
   id: ID!
-  name: String
+  name: String!
 }
 
 input UserInput {
-  name: String
+  name: String!
 }

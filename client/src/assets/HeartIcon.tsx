@@ -2,6 +2,7 @@ interface SVGProps {
   size: number;
   fill: string;
 }
+
 export default function HeartIcon({ size, fill }: SVGProps) {
   return (
     <svg

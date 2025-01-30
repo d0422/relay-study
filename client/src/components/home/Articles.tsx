@@ -1,19 +1,11 @@
-import { graphql, useLazyLoadQuery } from 'react-relay';
 import Article from './Article';
-import { ArticlesQuery as ArticlesQueryType } from './__generated__/ArticlesQuery.graphql';
+import { HomeQuery$data } from '../../activities/__generated__/HomeQuery.graphql';
 
-const ArticlesQuery = graphql`
-  query ArticlesQuery {
-    articles {
-      id
-      ...ArticleFragment
-    }
-  }
-`;
-
-export default function Articles() {
-  const { articles } = useLazyLoadQuery<ArticlesQueryType>(ArticlesQuery, {});
-
+export default function Articles({
+  articles,
+}: {
+  articles: HomeQuery$data['articles'];
+}) {
   if (!articles || articles.length === 0) {
     return <div>아직 작성된 글이 없어요!</div>;
   }

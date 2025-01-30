@@ -3,11 +3,11 @@ const gql = String.raw;
 const userSchema = gql`
   type User {
     id: ID!
-    name: String
+    name: String!
   }
 
   input UserInput {
-    name: String
+    name: String!
   }
 `;
 
