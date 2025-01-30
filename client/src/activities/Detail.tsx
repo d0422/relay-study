@@ -2,6 +2,7 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { DetailQuery as DetailQueryType } from './__generated__/DetailQuery.graphql';
 import { styled } from '@stitches/react';
+import Author from '../components/home/Author';
 
 type DetailParams = {
   params: {
@@ -14,6 +15,9 @@ const DetailQuery = graphql`
     getArticle(id: $id) {
       title
       content
+      author {
+        ...AuthorFragment
+      }
     }
   }
 `;
@@ -23,6 +27,10 @@ export default function Detail({ params: { id } }: DetailParams) {
     id,
   });
 
+  if (!getArticle) {
+    return null;
+  }
+
   return (
     <AppScreen
       appBar={{
@@ -30,8 +38,9 @@ export default function Detail({ params: { id } }: DetailParams) {
       }}
     >
       <Box>
-        <h2>{getArticle?.title}</h2>
-        <p>{getArticle?.content}</p>
+        <h2>{getArticle.title}</h2>
+        <p>{getArticle.content}</p>
+        <Author author={getArticle.author} />
       </Box>
     </AppScreen>
   );

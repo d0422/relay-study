@@ -13,7 +13,7 @@ export const { Stack, useFlow } = stackflow({
   plugins: [
     basicRendererPlugin(),
     basicUIPlugin({
-      theme: 'cupertino',
+      theme: 'android',
     }),
   ],
   initialActivity: () => 'Home',

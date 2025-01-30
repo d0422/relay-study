@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<923028bae714b99bb4d40b269cc09541>>
+ * @generated SignedSource<<453a44d525d21e76bb4f43ddfc65e754>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,11 +9,15 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type DetailQuery$variables = {
   id: string;
 };
 export type DetailQuery$data = {
   readonly getArticle: {
+    readonly author: {
+      readonly " $fragmentSpreads": FragmentRefs<"AuthorFragment">;
+    };
     readonly content: string;
     readonly title: string;
   } | null | undefined;
@@ -51,6 +55,13 @@ v3 = {
   "kind": "ScalarField",
   "name": "content",
   "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
 };
 return {
   "fragment": {
@@ -68,7 +79,23 @@ return {
         "plural": false,
         "selections": [
           (v2/*: any*/),
-          (v3/*: any*/)
+          (v3/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "author",
+            "plural": false,
+            "selections": [
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "AuthorFragment"
+              }
+            ],
+            "storageKey": null
+          }
         ],
         "storageKey": null
       }
@@ -95,26 +122,39 @@ return {
           {
             "alias": null,
             "args": null,
-            "kind": "ScalarField",
-            "name": "id",
+            "concreteType": "User",
+            "kind": "LinkedField",
+            "name": "author",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "name",
+                "storageKey": null
+              },
+              (v4/*: any*/)
+            ],
             "storageKey": null
-          }
+          },
+          (v4/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "92fa8cec557dae11ed243a4f40621747",
+    "cacheID": "e5398c111b09c36f9374aef50bd2eb7b",
     "id": null,
     "metadata": {},
     "name": "DetailQuery",
     "operationKind": "query",
-    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    id\n  }\n}\n"
+    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "4084bd99853cc9180bd9a48b024b079c";
+(node as any).hash = "56e395b8bb247eeb4e0185033850a7f4";
 
 export default node;
