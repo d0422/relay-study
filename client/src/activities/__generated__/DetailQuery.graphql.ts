@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<04a56c3dcf91229506f868fab0e07db9>>
+ * @generated SignedSource<<923028bae714b99bb4d40b269cc09541>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,7 +10,7 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 export type DetailQuery$variables = {
-  articleID: string;
+  id: string;
 };
 export type DetailQuery$data = {
   readonly getArticle: {
@@ -28,14 +28,14 @@ var v0 = [
   {
     "defaultValue": null,
     "kind": "LocalArgument",
-    "name": "articleID"
+    "name": "id"
   }
 ],
 v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "articleID"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -105,16 +105,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "22bcfd08a26e83b80d8fdcde436ffa16",
+    "cacheID": "92fa8cec557dae11ed243a4f40621747",
     "id": null,
     "metadata": {},
     "name": "DetailQuery",
     "operationKind": "query",
-    "text": "query DetailQuery(\n  $articleID: ID!\n) {\n  getArticle(id: $articleID) {\n    title\n    content\n    id\n  }\n}\n"
+    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    id\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "02abffbe797e83e623d7ac1c4989a0ea";
+(node as any).hash = "4084bd99853cc9180bd9a48b024b079c";
 
 export default node;

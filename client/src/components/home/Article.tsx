@@ -2,6 +2,7 @@ import { graphql, useFragment } from 'react-relay';
 import { ArticleFragment$key } from './__generated__/ArticleFragment.graphql';
 import { styled } from '@stitches/react';
 import Author from './Author';
+import { useFlow } from '../../stackflow';
 
 const ArticleFragment = graphql`
   fragment ArticleFragment on Article {
@@ -15,9 +16,11 @@ const ArticleFragment = graphql`
 `;
 
 export default function Article({ article }: { article: ArticleFragment$key }) {
-  const { title, content, author } = useFragment(ArticleFragment, article);
+  const { title, content, author, id } = useFragment(ArticleFragment, article);
+  const { push } = useFlow();
+
   return (
-    <ArticleBox>
+    <ArticleBox onClick={() => push('Detail', { id })}>
       <h1>{title}</h1>
       <div>{content}</div>
       <Author author={author} />
