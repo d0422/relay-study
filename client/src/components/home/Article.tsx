@@ -1,7 +1,7 @@
 import { graphql, useFragment } from 'react-relay';
 import { ArticleFragment$key } from './__generated__/ArticleFragment.graphql';
 import { styled } from '@stitches/react';
-import Author from './Author';
+import Author from '../shared/Author';
 import { useFlow } from '../../stackflow';
 
 const ArticleFragment = graphql`

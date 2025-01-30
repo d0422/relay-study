@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<453a44d525d21e76bb4f43ddfc65e754>>
+ * @generated SignedSource<<2fbd458e602bb933e4f1464f8342b11d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,6 +19,8 @@ export type DetailQuery$data = {
       readonly " $fragmentSpreads": FragmentRefs<"AuthorFragment">;
     };
     readonly content: string;
+    readonly isLiked: boolean | null | undefined;
+    readonly likeNum: number | null | undefined;
     readonly title: string;
   } | null | undefined;
 };
@@ -60,6 +62,20 @@ v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
+  "name": "isLiked",
+  "storageKey": null
+},
+v5 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "likeNum",
+  "storageKey": null
+},
+v6 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 };
@@ -80,6 +96,8 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -119,6 +137,8 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
+          (v5/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -134,27 +154,27 @@ return {
                 "name": "name",
                 "storageKey": null
               },
-              (v4/*: any*/)
+              (v6/*: any*/)
             ],
             "storageKey": null
           },
-          (v4/*: any*/)
+          (v6/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "e5398c111b09c36f9374aef50bd2eb7b",
+    "cacheID": "d794412fb0fe9957b06828c3ab4a3b20",
     "id": null,
     "metadata": {},
     "name": "DetailQuery",
     "operationKind": "query",
-    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
+    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    isLiked\n    likeNum\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "56e395b8bb247eeb4e0185033850a7f4";
+(node as any).hash = "396ed5b9dbbb75b12d5dccfb1dd32771";
 
 export default node;
