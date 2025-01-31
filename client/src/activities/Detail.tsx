@@ -4,6 +4,7 @@ import { DetailQuery as DetailQueryType } from './__generated__/DetailQuery.grap
 import { styled } from '@stitches/react';
 import Author from '../components/shared/Author';
 import HeartIcon from '../assets/HeartIcon';
+import { Layout } from '../components/shared/Layout';
 
 type DetailParams = {
   params: {
@@ -40,22 +41,20 @@ export default function Detail({ params: { id } }: DetailParams) {
         title: '글 보기',
       }}
     >
-      <Box>
-        <h2>{getArticle.title}</h2>
-        <p>{getArticle.content}</p>
-        <Author author={getArticle.author} />
-        <Gap>
-          <HeartIcon size={16} fill={getArticle.isLiked ? 'red' : 'white'} />
-          <p>{getArticle.likeNum}</p>
-        </Gap>
-      </Box>
+      <Layout>
+        <div>
+          <h2>{getArticle.title}</h2>
+          <p>{getArticle.content}</p>
+          <Author author={getArticle.author} />
+          <Gap>
+            <HeartIcon size={16} fill={getArticle.isLiked ? 'red' : 'white'} />
+            <p>{getArticle.likeNum}</p>
+          </Gap>
+        </div>
+      </Layout>
     </AppScreen>
   );
 }
-
-const Box = styled('div', {
-  padding: 16,
-});
 
 const Gap = styled('div', {
   display: 'flex',
