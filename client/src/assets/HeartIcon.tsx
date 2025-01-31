@@ -1,9 +1,10 @@
-interface SVGProps {
-  size: number;
+import { IconProps } from './type';
+
+interface HeartIconProps extends IconProps {
   fill: string;
 }
 
-export default function HeartIcon({ size, fill }: SVGProps) {
+export default function HeartIcon({ size, fill }: HeartIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

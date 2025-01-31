@@ -1,8 +1,6 @@
-interface UserIconProps {
-  size: number;
-}
+import { IconProps } from './type';
 
-export default function UserIcon({ size }: UserIconProps) {
+export default function UserIcon({ size }: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
