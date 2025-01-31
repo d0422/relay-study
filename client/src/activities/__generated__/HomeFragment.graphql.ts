@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<45ee0d0f2cf429f584c09882107df83a>>
+ * @generated SignedSource<<4a5198b1e5757e931728f1b0c8249565>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,8 +10,9 @@
 
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ArticlesFragment$data = {
+export type HomeFragment$data = {
   readonly articles: {
+    readonly __id: string;
     readonly edges: ReadonlyArray<{
       readonly node: {
         readonly id: string;
@@ -19,14 +20,14 @@ export type ArticlesFragment$data = {
       };
     }>;
   };
-  readonly " $fragmentType": "ArticlesFragment";
+  readonly " $fragmentType": "HomeFragment";
 };
-export type ArticlesFragment$key = {
-  readonly " $data"?: ArticlesFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"ArticlesFragment">;
+export type HomeFragment$key = {
+  readonly " $data"?: HomeFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"HomeFragment">;
 };
 
-import ArticlesRefetchQuery_graphql from './ArticlesRefetchQuery.graphql';
+import HomePaginationQuery_graphql from './HomePaginationQuery.graphql';
 
 const node: ReaderFragment = (function(){
 var v0 = [
@@ -35,7 +36,7 @@ var v0 = [
 return {
   "argumentDefinitions": [
     {
-      "defaultValue": 1,
+      "defaultValue": 3,
       "kind": "LocalArgument",
       "name": "count"
     },
@@ -65,17 +66,17 @@ return {
         "path": (v0/*: any*/)
       },
       "fragmentPathInResult": [],
-      "operation": ArticlesRefetchQuery_graphql
+      "operation": HomePaginationQuery_graphql
     }
   },
-  "name": "ArticlesFragment",
+  "name": "HomeFragment",
   "selections": [
     {
       "alias": "articles",
       "args": null,
       "concreteType": "ArticleConnection",
       "kind": "LinkedField",
-      "name": "__ArticlesFragment_articles_connection",
+      "name": "__HomeFragmentFragment_articles_connection",
       "plural": false,
       "selections": [
         {
@@ -150,6 +151,18 @@ return {
             }
           ],
           "storageKey": null
+        },
+        {
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "__id",
+              "storageKey": null
+            }
+          ]
         }
       ],
       "storageKey": null
@@ -160,6 +173,6 @@ return {
 };
 })();
 
-(node as any).hash = "dfeba74f83dbc73e8031059bfe2a4268";
+(node as any).hash = "26bb14259902b1bd85a25bf728e129ee";
 
 export default node;

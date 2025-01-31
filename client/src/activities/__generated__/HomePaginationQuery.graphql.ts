@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e8205eb83293822e4a70a73199d99bb5>>
+ * @generated SignedSource<<96a62a1d929e9373046a2445a5f50d94>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,22 +10,22 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ArticlesRefetchQuery$variables = {
+export type HomePaginationQuery$variables = {
   count?: number | null | undefined;
   cursor?: string | null | undefined;
 };
-export type ArticlesRefetchQuery$data = {
-  readonly " $fragmentSpreads": FragmentRefs<"ArticlesFragment">;
+export type HomePaginationQuery$data = {
+  readonly " $fragmentSpreads": FragmentRefs<"HomeFragment">;
 };
-export type ArticlesRefetchQuery = {
-  response: ArticlesRefetchQuery$data;
-  variables: ArticlesRefetchQuery$variables;
+export type HomePaginationQuery = {
+  response: HomePaginationQuery$data;
+  variables: HomePaginationQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "defaultValue": 1,
+    "defaultValue": 3,
     "kind": "LocalArgument",
     "name": "count"
   },
@@ -59,7 +59,7 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ArticlesRefetchQuery",
+    "name": "HomePaginationQuery",
     "selections": [
       {
         "args": [
@@ -75,7 +75,7 @@ return {
           }
         ],
         "kind": "FragmentSpread",
-        "name": "ArticlesFragment"
+        "name": "HomeFragment"
       }
     ],
     "type": "Query",
@@ -85,7 +85,7 @@ return {
   "operation": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ArticlesRefetchQuery",
+    "name": "HomePaginationQuery",
     "selections": [
       {
         "alias": null,
@@ -189,6 +189,18 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "kind": "ClientExtension",
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "__id",
+                "storageKey": null
+              }
+            ]
           }
         ],
         "storageKey": null
@@ -198,23 +210,23 @@ return {
         "args": (v1/*: any*/),
         "filters": null,
         "handle": "connection",
-        "key": "ArticlesFragment_articles",
+        "key": "HomeFragmentFragment_articles",
         "kind": "LinkedHandle",
         "name": "articles"
       }
     ]
   },
   "params": {
-    "cacheID": "6edec1279b4f6b31569f8d66db0707aa",
+    "cacheID": "ed5817fb9fde29074dab6499a6a44ad5",
     "id": null,
     "metadata": {},
-    "name": "ArticlesRefetchQuery",
+    "name": "HomePaginationQuery",
     "operationKind": "query",
-    "text": "query ArticlesRefetchQuery(\n  $count: Int = 1\n  $cursor: String\n) {\n  ...ArticlesFragment_1G22uz\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment ArticlesFragment_1G22uz on Query {\n  articles(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
+    "text": "query HomePaginationQuery(\n  $count: Int = 3\n  $cursor: String\n) {\n  ...HomeFragment_1G22uz\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment HomeFragment_1G22uz on Query {\n  articles(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "dfeba74f83dbc73e8031059bfe2a4268";
+(node as any).hash = "26bb14259902b1bd85a25bf728e129ee";
 
 export default node;

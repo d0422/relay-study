@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<707ed9a6bb2c024163773b9d538999a5>>
+ * @generated SignedSource<<a32c1238ef3aab792dbcd4797e440d91>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,7 +15,7 @@ export type HomeQuery$data = {
   readonly getUser: {
     readonly " $fragmentSpreads": FragmentRefs<"ProfileFragment">;
   } | null | undefined;
-  readonly " $fragmentSpreads": FragmentRefs<"ArticlesFragment">;
+  readonly " $fragmentSpreads": FragmentRefs<"HomeFragment">;
 };
 export type HomeQuery = {
   response: HomeQuery$data;
@@ -27,14 +27,14 @@ var v0 = [
   {
     "kind": "Literal",
     "name": "id",
-    "value": "0"
+    "value": "user0"
   }
 ],
 v1 = [
   {
     "kind": "Literal",
     "name": "first",
-    "value": 1
+    "value": 3
   }
 ],
 v2 = {
@@ -64,7 +64,7 @@ return {
       {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "ArticlesFragment"
+        "name": "HomeFragment"
       },
       {
         "alias": null,
@@ -80,7 +80,7 @@ return {
             "name": "ProfileFragment"
           }
         ],
-        "storageKey": "getUser(id:\"0\")"
+        "storageKey": "getUser(id:\"user0\")"
       }
     ],
     "type": "Query",
@@ -185,16 +185,28 @@ return {
               }
             ],
             "storageKey": null
+          },
+          {
+            "kind": "ClientExtension",
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "__id",
+                "storageKey": null
+              }
+            ]
           }
         ],
-        "storageKey": "articles(first:1)"
+        "storageKey": "articles(first:3)"
       },
       {
         "alias": null,
         "args": (v1/*: any*/),
         "filters": null,
         "handle": "connection",
-        "key": "ArticlesFragment_articles",
+        "key": "HomeFragmentFragment_articles",
         "kind": "LinkedHandle",
         "name": "articles"
       },
@@ -206,21 +218,21 @@ return {
         "name": "getUser",
         "plural": false,
         "selections": (v3/*: any*/),
-        "storageKey": "getUser(id:\"0\")"
+        "storageKey": "getUser(id:\"user0\")"
       }
     ]
   },
   "params": {
-    "cacheID": "aa8532add87426d6073d5d334557be91",
+    "cacheID": "4143f764922c8decf31e7b7907ed64c1",
     "id": null,
     "metadata": {},
     "name": "HomeQuery",
     "operationKind": "query",
-    "text": "query HomeQuery {\n  ...ArticlesFragment\n  getUser(id: \"0\") {\n    ...ProfileFragment\n    id\n  }\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment ArticlesFragment on Query {\n  articles(first: 1) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment ProfileFragment on User {\n  name\n}\n"
+    "text": "query HomeQuery {\n  ...HomeFragment\n  getUser(id: \"user0\") {\n    ...ProfileFragment\n    id\n  }\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment HomeFragment on Query {\n  articles(first: 3) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment ProfileFragment on User {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2b0036cddd4de01860e1664d5596d884";
+(node as any).hash = "24c0b786ef1ece10d919d79ead766007";
 
 export default node;
