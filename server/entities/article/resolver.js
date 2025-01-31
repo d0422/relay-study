@@ -1,7 +1,7 @@
 const Article = require('./Article.js');
 const MockDatabase = require('../../model/MockDatabase');
 const { getUser } = require('../user/resolver.js');
-let articleId = 0;
+let articleId = 1;
 
 const getArticle = ({ id }) => {
   const article = MockDatabase.articles.find((element) => element.id === id);
@@ -14,7 +14,7 @@ const getArticle = ({ id }) => {
 const createArticle = ({ input }) => {
   const author = getUser({ id: input.userId });
   const article = new Article({
-    id: articleId++,
+    id: String(articleId++),
     title: input.title,
     content: input.content,
     author: author,
@@ -22,8 +22,30 @@ const createArticle = ({ input }) => {
   return article;
 };
 
-const articles = () => {
-  return MockDatabase.articles;
+const articles = ({ first = 10, after }) => {
+  const allArticles = MockDatabase.articles;
+
+  const startIndex = after
+    ? allArticles.findIndex((article) => article.id === after) + 1
+    : 0;
+
+  const slicedArticles = allArticles.slice(startIndex, startIndex + first);
+
+  return {
+    edges: slicedArticles.map((article) => ({
+      node: article,
+      cursor: article.id,
+    })),
+    pageInfo: {
+      hasNextPage: startIndex + first < allArticles.length,
+      hasPreviousPage: startIndex > 0,
+      startCursor: slicedArticles.length > 0 ? slicedArticles[0].id : null, // 추가
+      endCursor:
+        slicedArticles.length > 0
+          ? slicedArticles[slicedArticles.length - 1].id
+          : null,
+    },
+  };
 };
 
 const modifyArticle = ({ input }) => {

@@ -20,6 +20,24 @@ const articleSchema = gql`
     title: String
     content: String
   }
+
+  type ArticleEdge {
+    node: Article!
+    cursor: String!
+  }
+
+  type ArticleConnection {
+    edges: [ArticleEdge!]!
+    pageInfo: PageInfo!
+  }
+
+  type PageInfo {
+    startCursor: String
+    endCursor: String
+    lastCursor: String
+    hasNextPage: Boolean
+    hasPreviousPage: Boolean
+  }
 `;
 
 module.exports = articleSchema;

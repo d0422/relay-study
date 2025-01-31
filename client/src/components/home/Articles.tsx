@@ -1,16 +1,43 @@
 import Article from './Article';
-import { HomeQuery$data } from '../../activities/__generated__/HomeQuery.graphql';
+import { graphql, useFragment } from 'react-relay';
+import { ArticlesFragment$key } from './__generated__/ArticlesFragment.graphql';
 
 export default function Articles({
-  articles,
+  queryData,
 }: {
-  articles: HomeQuery$data['articles'];
+  queryData: ArticlesFragment$key;
 }) {
-  if (!articles || articles.length === 0) {
+  const {
+    articles: { edges },
+  } = useFragment(
+    graphql`
+      fragment ArticlesFragment on Query
+      @argumentDefinitions(
+        cursor: { type: "String" }
+        count: { type: "Int", defaultValue: 1 }
+      )
+      @refetchable(queryName: "ArticlesRefetchQuery") {
+        articles(first: $count, after: $cursor)
+          @connection(key: "ArticlesFragment_articles") {
+          edges {
+            node {
+              id
+              ...ArticleFragment
+            }
+          }
+        }
+      }
+    `,
+    queryData
+  );
+
+  if (!edges || edges.length === 0) {
     return <div>아직 작성된 글이 없어요!</div>;
   }
 
-  return articles.map((article) =>
-    article ? <Article key={article.id} article={article} /> : null
+  return edges.map((article) =>
+    article.node ? (
+      <Article key={article.node.id} article={article.node} />
+    ) : null
   );
 }

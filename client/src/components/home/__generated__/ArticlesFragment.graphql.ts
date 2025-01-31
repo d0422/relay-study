@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6fbbf2aeeb0365f22af2104d798ab5d0>>
+ * @generated SignedSource<<45ee0d0f2cf429f584c09882107df83a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,12 +11,14 @@
 import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type ArticlesFragment$data = {
-  readonly author: {
-    readonly name: string | null | undefined;
-  } | null | undefined;
-  readonly content: string | null | undefined;
-  readonly id: string;
-  readonly title: string | null | undefined;
+  readonly articles: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"ArticleFragment">;
+      };
+    }>;
+  };
   readonly " $fragmentType": "ArticlesFragment";
 };
 export type ArticlesFragment$key = {
@@ -24,56 +26,140 @@ export type ArticlesFragment$key = {
   readonly " $fragmentSpreads": FragmentRefs<"ArticlesFragment">;
 };
 
-const node: ReaderFragment = {
-  "argumentDefinitions": [],
+import ArticlesRefetchQuery_graphql from './ArticlesRefetchQuery.graphql';
+
+const node: ReaderFragment = (function(){
+var v0 = [
+  "articles"
+];
+return {
+  "argumentDefinitions": [
+    {
+      "defaultValue": 1,
+      "kind": "LocalArgument",
+      "name": "count"
+    },
+    {
+      "defaultValue": null,
+      "kind": "LocalArgument",
+      "name": "cursor"
+    }
+  ],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "connection": [
+      {
+        "count": "count",
+        "cursor": "cursor",
+        "direction": "forward",
+        "path": (v0/*: any*/)
+      }
+    ],
+    "refetch": {
+      "connection": {
+        "forward": {
+          "count": "count",
+          "cursor": "cursor"
+        },
+        "backward": null,
+        "path": (v0/*: any*/)
+      },
+      "fragmentPathInResult": [],
+      "operation": ArticlesRefetchQuery_graphql
+    }
+  },
   "name": "ArticlesFragment",
   "selections": [
     {
-      "alias": null,
+      "alias": "articles",
       "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "content",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "concreteType": "User",
+      "concreteType": "ArticleConnection",
       "kind": "LinkedField",
-      "name": "author",
+      "name": "__ArticlesFragment_articles_connection",
       "plural": false,
       "selections": [
         {
           "alias": null,
           "args": null,
-          "kind": "ScalarField",
-          "name": "name",
+          "concreteType": "ArticleEdge",
+          "kind": "LinkedField",
+          "name": "edges",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "concreteType": "Article",
+              "kind": "LinkedField",
+              "name": "node",
+              "plural": false,
+              "selections": [
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "id",
+                  "storageKey": null
+                },
+                {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "ArticleFragment"
+                },
+                {
+                  "alias": null,
+                  "args": null,
+                  "kind": "ScalarField",
+                  "name": "__typename",
+                  "storageKey": null
+                }
+              ],
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "cursor",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "kind": "LinkedField",
+          "name": "pageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "endCursor",
+              "storageKey": null
+            },
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "hasNextPage",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],
       "storageKey": null
     }
   ],
-  "type": "Article",
+  "type": "Query",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "3f35f2bfa90a14a4ecd9277de7dd3744";
+(node as any).hash = "dfeba74f83dbc73e8031059bfe2a4268";
 
 export default node;

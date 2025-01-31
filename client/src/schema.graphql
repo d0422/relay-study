@@ -1,7 +1,7 @@
 type Query {
   users: [User]
   getUser(id: ID!): User
-  articles: [Article]
+  articles(first: Int, after: String): ArticleConnection!
   getArticle(id: ID!): Article
 }
 
@@ -29,6 +29,24 @@ input ArticleInput {
 input ArticleModifyInput {
   title: String
   content: String
+}
+
+type ArticleEdge {
+  node: Article!
+  cursor: String!
+}
+
+type ArticleConnection {
+  edges: [ArticleEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  lastCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
 }
 
 type User {

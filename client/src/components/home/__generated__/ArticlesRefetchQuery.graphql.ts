@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<707ed9a6bb2c024163773b9d538999a5>>
+ * @generated SignedSource<<e8205eb83293822e4a70a73199d99bb5>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,31 +10,41 @@
 
 import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type HomeQuery$variables = Record<PropertyKey, never>;
-export type HomeQuery$data = {
-  readonly getUser: {
-    readonly " $fragmentSpreads": FragmentRefs<"ProfileFragment">;
-  } | null | undefined;
+export type ArticlesRefetchQuery$variables = {
+  count?: number | null | undefined;
+  cursor?: string | null | undefined;
+};
+export type ArticlesRefetchQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ArticlesFragment">;
 };
-export type HomeQuery = {
-  response: HomeQuery$data;
-  variables: HomeQuery$variables;
+export type ArticlesRefetchQuery = {
+  response: ArticlesRefetchQuery$data;
+  variables: ArticlesRefetchQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
 var v0 = [
   {
-    "kind": "Literal",
-    "name": "id",
-    "value": "0"
+    "defaultValue": 1,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "cursor"
   }
 ],
 v1 = [
   {
-    "kind": "Literal",
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "cursor"
+  },
+  {
+    "kind": "Variable",
     "name": "first",
-    "value": 1
+    "variableName": "count"
   }
 ],
 v2 = {
@@ -43,44 +53,29 @@ v2 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v3 = [
-  {
-    "alias": null,
-    "args": null,
-    "kind": "ScalarField",
-    "name": "name",
-    "storageKey": null
-  },
-  (v2/*: any*/)
-];
+};
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "HomeQuery",
+    "name": "ArticlesRefetchQuery",
     "selections": [
       {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "ArticlesFragment"
-      },
-      {
-        "alias": null,
-        "args": (v0/*: any*/),
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "getUser",
-        "plural": false,
-        "selections": [
+        "args": [
           {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "ProfileFragment"
+            "kind": "Variable",
+            "name": "count",
+            "variableName": "count"
+          },
+          {
+            "kind": "Variable",
+            "name": "cursor",
+            "variableName": "cursor"
           }
         ],
-        "storageKey": "getUser(id:\"0\")"
+        "kind": "FragmentSpread",
+        "name": "ArticlesFragment"
       }
     ],
     "type": "Query",
@@ -88,9 +83,9 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "HomeQuery",
+    "name": "ArticlesRefetchQuery",
     "selections": [
       {
         "alias": null,
@@ -138,7 +133,16 @@ return {
                     "kind": "LinkedField",
                     "name": "author",
                     "plural": false,
-                    "selections": (v3/*: any*/),
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      (v2/*: any*/)
+                    ],
                     "storageKey": null
                   },
                   {
@@ -187,7 +191,7 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "articles(first:1)"
+        "storageKey": null
       },
       {
         "alias": null,
@@ -197,30 +201,20 @@ return {
         "key": "ArticlesFragment_articles",
         "kind": "LinkedHandle",
         "name": "articles"
-      },
-      {
-        "alias": null,
-        "args": (v0/*: any*/),
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "getUser",
-        "plural": false,
-        "selections": (v3/*: any*/),
-        "storageKey": "getUser(id:\"0\")"
       }
     ]
   },
   "params": {
-    "cacheID": "aa8532add87426d6073d5d334557be91",
+    "cacheID": "6edec1279b4f6b31569f8d66db0707aa",
     "id": null,
     "metadata": {},
-    "name": "HomeQuery",
+    "name": "ArticlesRefetchQuery",
     "operationKind": "query",
-    "text": "query HomeQuery {\n  ...ArticlesFragment\n  getUser(id: \"0\") {\n    ...ProfileFragment\n    id\n  }\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment ArticlesFragment on Query {\n  articles(first: 1) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment ProfileFragment on User {\n  name\n}\n"
+    "text": "query ArticlesRefetchQuery(\n  $count: Int = 1\n  $cursor: String\n) {\n  ...ArticlesFragment_1G22uz\n}\n\nfragment ArticleFragment on Article {\n  id\n  title\n  content\n  author {\n    ...AuthorFragment\n    id\n  }\n}\n\nfragment ArticlesFragment_1G22uz on Query {\n  articles(first: $count, after: $cursor) {\n    edges {\n      node {\n        id\n        ...ArticleFragment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "2b0036cddd4de01860e1664d5596d884";
+(node as any).hash = "dfeba74f83dbc73e8031059bfe2a4268";
 
 export default node;

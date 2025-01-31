@@ -3,13 +3,11 @@ import Articles from '../components/home/Articles';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import { HomeQuery as HomeQueryType } from './__generated__/HomeQuery.graphql';
 import Profile from '../components/home/Profile';
+import PlusButton from '../components/home/PlusButton';
 
 const HomeQuery = graphql`
   query HomeQuery {
-    articles {
-      id
-      ...ArticleFragment
-    }
+    ...ArticlesFragment
     getUser(id: "0") {
       ...ProfileFragment
     }
@@ -17,17 +15,18 @@ const HomeQuery = graphql`
 `;
 
 export default function Home() {
-  const { articles, getUser } = useLazyLoadQuery<HomeQueryType>(HomeQuery, {});
+  const queryData = useLazyLoadQuery<HomeQueryType>(HomeQuery, {});
 
   return (
     <AppScreen
       appBar={{
         title: '커뮤니티',
-        renderRight: () => <Profile profile={getUser} />,
+        renderRight: () => <Profile profile={queryData.getUser} />,
         overflow: 'visible',
       }}
     >
-      <Articles articles={articles} />
+      <Articles queryData={queryData} />
+      <PlusButton />
     </AppScreen>
   );
 }

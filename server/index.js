@@ -21,7 +21,7 @@ const schema = buildSchema(gql`
   type Query {
     users: [User]
     getUser(id: ID!): User
-    articles: [Article]
+    articles(first: Int, after: String): ArticleConnection!
     getArticle(id: ID!): Article
   }
 
