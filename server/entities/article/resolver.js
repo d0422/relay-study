@@ -19,17 +19,22 @@ const createArticle = ({ input }) => {
     content: input.content,
     author: author,
   });
-  return article;
+  MockDatabase.articles = [...MockDatabase.articles, article];
+
+  return {
+    cursor: article.id,
+    node: article,
+  };
 };
 
 const articles = ({ first = 10, after }) => {
   const allArticles = MockDatabase.articles;
-
   const startIndex = after
     ? allArticles.findIndex((article) => article.id === after) + 1
     : 0;
 
   const slicedArticles = allArticles.slice(startIndex, startIndex + first);
+  slicedArticles.reverse();
 
   return {
     edges: slicedArticles.map((article) => ({

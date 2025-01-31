@@ -27,7 +27,7 @@ const schema = buildSchema(gql`
 
   type Mutation {
     createUser(input: UserInput): User
-    createArticle(input: ArticleInput): Article
+    createArticle(input: ArticleInput): ArticleEdge
     modifyArticle(input: ArticleModifyInput): Article
   }
 `);
