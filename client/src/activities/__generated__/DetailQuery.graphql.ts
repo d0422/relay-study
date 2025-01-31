@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<2fbd458e602bb933e4f1464f8342b11d>>
+ * @generated SignedSource<<6d3defa6ccd5f4047a3b11b815334c01>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,9 +19,8 @@ export type DetailQuery$data = {
       readonly " $fragmentSpreads": FragmentRefs<"AuthorFragment">;
     };
     readonly content: string;
-    readonly isLiked: boolean | null | undefined;
-    readonly likeNum: number | null | undefined;
     readonly title: string;
+    readonly " $fragmentSpreads": FragmentRefs<"HeartFragmnet">;
   } | null | undefined;
 };
 export type DetailQuery = {
@@ -62,20 +61,6 @@ v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "isLiked",
-  "storageKey": null
-},
-v5 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "likeNum",
-  "storageKey": null
-},
-v6 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 };
@@ -96,8 +81,11 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "HeartFragmnet"
+          },
           {
             "alias": null,
             "args": null,
@@ -137,8 +125,20 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
-          (v4/*: any*/),
-          (v5/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "isLiked",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "likeNum",
+            "storageKey": null
+          },
           {
             "alias": null,
             "args": null,
@@ -154,27 +154,27 @@ return {
                 "name": "name",
                 "storageKey": null
               },
-              (v6/*: any*/)
+              (v4/*: any*/)
             ],
             "storageKey": null
           },
-          (v6/*: any*/)
+          (v4/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "d794412fb0fe9957b06828c3ab4a3b20",
+    "cacheID": "e24cc5cdd4e5746cfe447dc47fa080cd",
     "id": null,
     "metadata": {},
     "name": "DetailQuery",
     "operationKind": "query",
-    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    isLiked\n    likeNum\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n"
+    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    ...HeartFragmnet\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment HeartFragmnet on Article {\n  isLiked\n  likeNum\n}\n"
   }
 };
 })();
 
-(node as any).hash = "396ed5b9dbbb75b12d5dccfb1dd32771";
+(node as any).hash = "6cc7a898c9102e5493f53e5ff3b1a76a";
 
 export default node;
