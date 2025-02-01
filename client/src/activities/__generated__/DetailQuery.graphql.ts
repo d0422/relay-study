@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6d3defa6ccd5f4047a3b11b815334c01>>
+ * @generated SignedSource<<bebad7d7ad68a28f851858d7762dea6c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -125,6 +125,7 @@ return {
         "selections": [
           (v2/*: any*/),
           (v3/*: any*/),
+          (v4/*: any*/),
           {
             "alias": null,
             "args": null,
@@ -157,20 +158,19 @@ return {
               (v4/*: any*/)
             ],
             "storageKey": null
-          },
-          (v4/*: any*/)
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "e24cc5cdd4e5746cfe447dc47fa080cd",
+    "cacheID": "ce14976e250bf672281030a31f48e632",
     "id": null,
     "metadata": {},
     "name": "DetailQuery",
     "operationKind": "query",
-    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    ...HeartFragmnet\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment HeartFragmnet on Article {\n  isLiked\n  likeNum\n}\n"
+    "text": "query DetailQuery(\n  $id: ID!\n) {\n  getArticle(id: $id) {\n    title\n    content\n    ...HeartFragmnet\n    author {\n      ...AuthorFragment\n      id\n    }\n    id\n  }\n}\n\nfragment AuthorFragment on User {\n  name\n}\n\nfragment HeartFragmnet on Article {\n  id\n  isLiked\n  likeNum\n}\n"
   }
 };
 })();

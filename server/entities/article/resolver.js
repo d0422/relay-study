@@ -54,7 +54,9 @@ const articles = ({ first = 10, after }) => {
 };
 
 const modifyArticle = ({ input }) => {
-  const article = MockDatabase.articles.find((element) => element.id);
+  const article = MockDatabase.articles.find(
+    (element) => element.id === input.id
+  );
   if (!article) {
     throw new Error('해당 글을 조회할 수 없어요!');
   }
@@ -69,9 +71,38 @@ const modifyArticle = ({ input }) => {
   return modifiedArticle;
 };
 
+const likeArticle = ({ articleID }) => {
+  // User에 관계없이 좋아요 구현
+  const article = MockDatabase.articles.find(
+    (element) => element.id === articleID
+  );
+  console.log(article);
+
+  if (!article) {
+    throw new Error('해당 글을 조회할 수 없어요!');
+  }
+  const modifiedArticle = { ...article };
+  const isAlreadyLike = modifiedArticle.isLiked;
+  if (isAlreadyLike) {
+    modifiedArticle.likeNum -= 1;
+  } else {
+    modifiedArticle.likeNum += 1;
+  }
+
+  modifiedArticle.isLiked = !modifiedArticle.isLiked;
+
+  MockDatabase.articles = [
+    ...MockDatabase.articles.filter((element) => element.id !== articleID),
+    modifiedArticle,
+  ];
+
+  return modifiedArticle;
+};
+
 module.exports = {
   createArticle,
   articles,
   getArticle,
   modifyArticle,
+  likeArticle,
 };

@@ -29,6 +29,7 @@ const schema = buildSchema(gql`
     createUser(input: UserInput): User
     createArticle(input: ArticleInput): ArticleEdge
     modifyArticle(input: ArticleModifyInput): Article
+    likeArticle(articleID: ID!): Article
   }
 `);
 
