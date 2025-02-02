@@ -33,6 +33,7 @@ const StoryFragment = graphql`
 
 export default function Story({ story }: Props): React.ReactElement {
   const data = useFragment(StoryFragment, story);
+
   return (
     <Card>
       <PosterByline poster={data.poster} />

@@ -2,7 +2,7 @@ type Query {
   users: [User]
   getUser(id: ID!): User
   articles(first: Int, after: String): ArticleConnection!
-  getArticle(id: ID!): Article
+  getArticle(id: ID!): Article!
 }
 
 type Mutation {
