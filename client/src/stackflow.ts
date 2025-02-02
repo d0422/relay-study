@@ -4,6 +4,7 @@ import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
 import Home from './activities/Home';
 import Detail from './activities/Detail';
 import Write from './activities/Write';
+import Edit from './activities/Edit';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -11,6 +12,7 @@ export const { Stack, useFlow } = stackflow({
     Home,
     Detail,
     Write,
+    Edit,
   },
   plugins: [
     basicRendererPlugin(),

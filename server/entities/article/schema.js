@@ -17,6 +17,7 @@ const articleSchema = gql`
   }
 
   input ArticleModifyInput {
+    id: ID!
     title: String
     content: String
   }

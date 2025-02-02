@@ -28,6 +28,7 @@ input ArticleInput {
 }
 
 input ArticleModifyInput {
+  id: ID!
   title: String
   content: String
 }

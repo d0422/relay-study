@@ -81,26 +81,26 @@ const Write: ActivityComponentType<WriteParams> = ({ params }) => {
   );
 };
 
-const Input = styled('input', {
+export const Input = styled('input', {
   fontSize: 20,
   borderRadius: 10,
   padding: 8,
   width: 250,
 });
 
-const Textarea = styled('textarea', {
+export const Textarea = styled('textarea', {
   fontSize: 20,
   borderRadius: 10,
   padding: 8,
   width: 250,
 });
 
-const InputTitle = styled('p', {
+export const InputTitle = styled('p', {
   fontSize: 20,
   fontWeight: 600,
 });
 
-const Button = styled('button', {
+export const Button = styled('button', {
   backgroundColor: 'white',
   padding: 16,
   borderRadius: 16,
