@@ -10,9 +10,6 @@ import Article from '../components/home/Article';
 const HomeQuery = graphql`
   query HomeQuery {
     ...HomeFragment
-    getUser(id: "user0") {
-      ...ProfileFragment
-    }
   }
 `;
 
@@ -55,7 +52,7 @@ export default function Home() {
     <AppScreen
       appBar={{
         title: '커뮤니티',
-        renderRight: () => <Profile profile={queryData.getUser} />,
+        renderRight: () => <Profile />,
         overflow: 'visible',
       }}
     >

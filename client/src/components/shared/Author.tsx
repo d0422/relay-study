@@ -1,5 +1,5 @@
 import { graphql, useFragment } from 'react-relay';
-import { AuthorFragment$key } from '../home/__generated__/AuthorFragment.graphql';
+import { AuthorFragment$key } from './__generated__/AuthorFragment.graphql';
 import { styled } from '@stitches/react';
 
 const AuthorFragment = graphql`

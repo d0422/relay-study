@@ -1,21 +1,15 @@
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import UserIcon from '../../assets/UserIcon';
-import { graphql, useFragment } from 'react-relay';
-import { ProfileFragment$key } from './__generated__/ProfileFragment.graphql';
+import { useQueryLoader } from 'react-relay';
 import { styled } from '@stitches/react';
+import ProfileContent, { ProfileContentPreloadQuery } from './ProfileContent';
+import type { ProfileContentPreloadQuery as ProfileContentPreloadQueryType } from './__generated__/ProfileContentPreloadQuery.graphql';
 
-const ProfileFragment = graphql`
-  fragment ProfileFragment on User {
-    name
-  }
-`;
+export default function Profile() {
+  const [queryRef, loadQuery] = useQueryLoader<ProfileContentPreloadQueryType>(
+    ProfileContentPreloadQuery
+  );
 
-interface ProfileProps {
-  profile: ProfileFragment$key | null | undefined;
-}
-
-export default function Profile({ profile }: ProfileProps) {
-  const data = useFragment(ProfileFragment, profile);
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -23,13 +17,18 @@ export default function Profile({ profile }: ProfileProps) {
       style={{
         position: 'relative',
       }}
-      onClick={() => setIsClicked((prev) => !prev)}
+      onClick={() => {
+        loadQuery({});
+        setIsClicked((prev) => !prev);
+      }}
     >
       <UserIcon size={25} />
-      {isClicked && (
+      {isClicked && queryRef && (
         <Absolute>
           <HoverName>
-            <p style={{ color: 'black' }}>{data?.name}</p>
+            <Suspense fallback={<div>로딩중</div>}>
+              <ProfileContent queryRef={queryRef} />
+            </Suspense>
           </HoverName>
         </Absolute>
       )}
