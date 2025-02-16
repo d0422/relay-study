@@ -30,7 +30,7 @@ const schema = buildSchema(gql`
     createArticle(input: ArticleInput): ArticleEdge
     modifyArticle(input: ArticleModifyInput): Article
     likeArticle(articleID: ID!): Article
-    deleteArticle(articleID: ID!): ID!
+    deleteArticle(input: ArticleDeleteInput): Article
   }
 `);
 

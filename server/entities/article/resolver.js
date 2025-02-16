@@ -99,14 +99,18 @@ const likeArticle = ({ articleID }) => {
   return modifiedArticle;
 };
 
-const deleteArticle = ({ articleID }) => {
+const deleteArticle = ({ input }) => {
+  const { id } = input;
+  const article = MockDatabase.articles.find((element) => element.id === id);
+
+  if (!article) {
+    throw new Error('no article with' + id);
+  }
   MockDatabase.articles = MockDatabase.articles.filter(
-    (element) => element.id !== articleID
+    (element) => element.id !== id
   );
 
-  return {
-    id: articleID,
-  };
+  return article;
 };
 
 module.exports = {
