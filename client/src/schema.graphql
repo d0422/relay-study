@@ -10,6 +10,7 @@ type Mutation {
   createArticle(input: ArticleInput): ArticleEdge
   modifyArticle(input: ArticleModifyInput): Article
   likeArticle(articleID: ID!): Article
+  deleteArticle(input: ArticleDeleteInput): Article
 }
 
 type Article {
@@ -25,6 +26,10 @@ input ArticleInput {
   title: String!
   content: String!
   userId: String!
+}
+
+input ArticleDeleteInput {
+  id: ID!
 }
 
 input ArticleModifyInput {

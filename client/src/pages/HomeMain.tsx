@@ -53,7 +53,11 @@ const HomeMain = withSuspense(() => {
       {(!edges || edges.length === 0) && <div>아직 작성된 글이 없어요!</div>}
       {edges.map((article) =>
         article.node ? (
-          <Article key={article.node.id} article={article.node} />
+          <Article
+            key={article.node.id}
+            article={article.node}
+            articlesId={data.articles.__id}
+          />
         ) : null
       )}
       <PlusButton onClick={onClick} />
