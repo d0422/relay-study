@@ -22,6 +22,10 @@ const articleSchema = gql`
     content: String
   }
 
+  input ArticleDeleteInput {
+    id: ID!
+  }
+
   type ArticleEdge {
     node: Article!
     cursor: String!

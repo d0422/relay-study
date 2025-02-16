@@ -99,10 +99,21 @@ const likeArticle = ({ articleID }) => {
   return modifiedArticle;
 };
 
+const deleteArticle = ({ articleID }) => {
+  MockDatabase.articles = MockDatabase.articles.filter(
+    (element) => element.id !== articleID
+  );
+
+  return {
+    id: articleID,
+  };
+};
+
 module.exports = {
   createArticle,
   articles,
   getArticle,
   modifyArticle,
   likeArticle,
+  deleteArticle,
 };
